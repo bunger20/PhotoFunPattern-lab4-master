@@ -48,6 +48,41 @@ public class PhotoFun extends AppCompatActivity {
 
     }
 
+    private void initImageArray (){
+        myImageBmps = new ArrayList<Bitmap>();
+        TypedArray imageIds =
+                getResources().obtainTypedArray(R.array.imageIdArray);
+
+        for (int i=0; i<myImageNames.length; i++) {
+            int id = imageIds.getResourceId(i, 0);
+            if (id == 0)
+                id = imageIds.getResourceId(0, 0);
+            Bitmap bmp =
+                    BitmapFactory.decodeResource(getResources(), id);
+            myImageBmps.add(bmp);
+        }
+    }
+
+
+    private class MySpinnerListener implements
+            OnItemSelectedListener {
+        @Override
+        public void onItemSelected(AdapterView<?> parentView,
+                                   View selectedItemView,
+                                   int position,
+                                   long id){
+            myOriginalView.setImageBitmap
+                    (myImageBmps.get(position));
+            BitmapDrawable originalDrawableBmp =
+                    (BitmapDrawable) myOriginalView.getDrawable();
+            myOriginalBmp = originalDrawableBmp.getBitmap();
+        }
+
+        public void onNothingSelected(AdapterView<?> parentView){
+
+        }
+    }
+
     /*
     * onCreate This constructor lays out the user interface, initializes the
     * original image and links buttons to their actions.
