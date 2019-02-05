@@ -1,5 +1,7 @@
 package edu.up.cs371.epp.photofunpattern;
 
+import android.content.res.TypedArray;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
         import android.graphics.Bitmap;
@@ -65,7 +67,7 @@ public class PhotoFun extends AppCompatActivity {
 
 
     private class MySpinnerListener implements
-            OnItemSelectedListener {
+            AdapterView.OnItemSelectedListener {
         @Override
         public void onItemSelected(AdapterView<?> parentView,
                                    View selectedItemView,
@@ -136,18 +138,5 @@ public class PhotoFun extends AppCompatActivity {
         }
     }
 
-    private class MySpinnerListener
-        implements AdapterView.OnItemSelectedListener{
-
-        @Override
-        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-        }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> parent) {
-
-        }
-    }
 }
 
