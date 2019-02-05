@@ -29,6 +29,7 @@ public class PhotoFun extends AppCompatActivity {
     // Image resources
     private Bitmap myOriginalBmp;
     private ImageView myOriginalView;
+
     private ImageView myNewImageView;
 
     private String[] myImageNames;
@@ -43,11 +44,11 @@ public class PhotoFun extends AppCompatActivity {
                 android.R.layout.simple_list_item_1,
                 android.R.id.text1,
                 myImageNames);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource
+                (android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener
                 (new MySpinnerListener());
-
     }
 
     private void initImageArray (){
@@ -96,10 +97,10 @@ public class PhotoFun extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_fun);
 
-        ImageView originalImageView =
+        myOriginalView =
                 (ImageView) findViewById(R.id.originalImage);
         BitmapDrawable originalDrawableBmp =
-                (BitmapDrawable) originalImageView.getDrawable();
+                (BitmapDrawable) myOriginalView.getDrawable();
         myOriginalBmp = originalDrawableBmp.getBitmap();
 
         myNewImageView = (ImageView) findViewById(R.id.newImage);
@@ -112,6 +113,9 @@ public class PhotoFun extends AppCompatActivity {
         brightnessFilterButton.setOnClickListener
                 (new brightnessFilterButtonListener());
         initSpinner();
+        initImageArray();
+
+
     }
 
     /*
