@@ -4,10 +4,14 @@ import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
         import android.graphics.Bitmap;
         import android.graphics.drawable.BitmapDrawable;
-        import android.widget.ImageView;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
         import android.widget.Button;
         import android.view.View;
 import android.widget.Spinner;
+
+import java.util.ArrayList;
 
 /**
  *  class PhotoFun controls this photo manipulation app.
@@ -37,11 +41,11 @@ public class PhotoFun extends AppCompatActivity {
                 android.R.layout.simple_list_item_1,
                 android.R.id.text1,
                 myImageNames);
-        adapter.setDropDownViewResource
-                (android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener
                 (new MySpinnerListener());
+
     }
 
     /*
@@ -70,6 +74,7 @@ public class PhotoFun extends AppCompatActivity {
                 (Button) findViewById(R.id.brightnessFilterButton);
         brightnessFilterButton.setOnClickListener
                 (new brightnessFilterButtonListener());
+        initSpinner();
     }
 
     /*
@@ -93,6 +98,20 @@ public class PhotoFun extends AppCompatActivity {
         public void onClick(View button) {
             WestEdgeFilter filter = new WestEdgeFilter();
             myNewImageView.setImageBitmap(filter.apply(myOriginalBmp));
+        }
+    }
+
+    private class MySpinnerListener
+        implements AdapterView.OnItemSelectedListener{
+
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
         }
     }
 }
