@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
         import android.widget.ImageView;
         import android.widget.Button;
         import android.view.View;
+import android.widget.Spinner;
 
 /**
  *  class PhotoFun controls this photo manipulation app.
@@ -21,7 +22,27 @@ public class PhotoFun extends AppCompatActivity {
 
     // Image resources
     private Bitmap myOriginalBmp;
+    private ImageView myOriginalView;
     private ImageView myNewImageView;
+
+    private String[] myImageNames;
+    private ArrayList<Bitmap> myImageBmps;
+
+
+    private void initSpinner (){
+        Spinner spinner = (Spinner) findViewById(R.id.imageNames);
+        myImageNames =
+                getResources().getStringArray(R.array.imageNames);
+        ArrayAdapter adapter = new ArrayAdapter<String> (this,
+                android.R.layout.simple_list_item_1,
+                android.R.id.text1,
+                myImageNames);
+        adapter.setDropDownViewResource
+                (android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener
+                (new MySpinnerListener());
+    }
 
     /*
     * onCreate This constructor lays out the user interface, initializes the
